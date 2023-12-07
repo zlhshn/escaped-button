@@ -1,0 +1,28 @@
+.escape{
+
+    animation: swap .1s infinite alternate;
+}
+
+
+@keyframes swap {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(150px); /* İstenilen kayma mesafesi */
+    }
+  }
+
+  body{
+
+    background-color: rgb(124, 195, 216);
+    font-family: cursive;
+  
+  }
+
+  button{
+
+    margin: auto;
+  }
+  
+  
