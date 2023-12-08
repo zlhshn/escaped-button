@@ -11,10 +11,10 @@ Validation => <br>
 * Setting whether to display the password when the Show/Hidden button is clicked.
 
 ## Project Live Link
-[Click]()
+[Click](https://form-react-zlh.vercel.app/)
 
 ## How does my project look
-![form]()
+![form](./forms.gif)
 
 
 ## Technologies
