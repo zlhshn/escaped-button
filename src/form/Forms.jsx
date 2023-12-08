@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-
+import Cards from "./Card"
 // import Container from "react-bootstrap/Container";
 
 function Forms() {
@@ -18,25 +18,31 @@ function Forms() {
 
  
   const [value, setValue] = useState(false);
-  const [mouse, setMouse] = useState();
-  const { username, password, email, firstname, lastname, image } = data;
+  const [showCard, setshowCard] = useState(false);
+  const [escape, setEscape] = useState();
+ 
 
   const handleData = (e) => {
     setData({ ...data, [e.target.id]: e.target.value });
   };
 
-  const hadleSubmit = (e) => {
+  const hadleSubmit =(e) => {
+ 
     e.preventDefault();
     if (Object.values(data).every((value) => value.trim() !== "")) {
-    
+      
+      setshowCard(true)  
     } 
+ 
+
+   
   };
 
-  const handleMouse =()=>{
+  const handleButton =()=>{
     if (Object.values(data).every((value) => value.trim() !== "")) {
-      setMouse(false)
+      setEscape(false)
     } else {
-      setMouse(true)
+      setEscape(true)
     }
    }
 
@@ -68,7 +74,7 @@ function Forms() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>First name</Form.Label>
+          <Form.Label>First name:</Form.Label>
           <Form.Control
      
             type="text"
@@ -106,7 +112,7 @@ function Forms() {
             Please choose a username.
           </Form.Control.Feedback>
         </Form.Group>
-
+        <Form.Label>Password:</Form.Label>
         <InputGroup className="group">
        
         <Form.Control
@@ -116,6 +122,7 @@ function Forms() {
               id="password"
          
             />
+          
           <Button
             type="button"
             onClick={() => setValue(!value)}
@@ -126,11 +133,12 @@ function Forms() {
           </Button>
         </InputGroup>
         <div className="text-center">
-        <Button type="submit" onMouseEnter={handleMouse} onMouseLeave ={()=>setMouse(false)} className={mouse ? "submit" : ""}>
+        <Button type="submit" onMouseEnter={handleButton} onMouseLeave ={()=>setEscape(false)} className={escape ? "submit" : ""}>
           Submit
         </Button>
         </div>
       </Form>
+      {showCard && <Cards data={data}  />}
     </Container>
   );
 }

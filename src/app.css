@@ -10,6 +10,8 @@
 body {
   background-color: rgb(124, 195, 216);
   font-family: cursive;
+  padding: 2rem;
+
 }
 
 button {
