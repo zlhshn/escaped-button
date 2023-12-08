@@ -1,4 +1,4 @@
-## Escape Button 💨🙂
+## Escaped Button 💨🙂
 ## Description
 I created this project to learn how to use form elements with React. <br>
 Validation => <br>
