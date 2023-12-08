@@ -8,111 +8,86 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 function Forms() {
   const [data, setData] = useState({
-    username: "",
     email: "",
-    firstName: "",
-    lastName: "",
+    username: "",
+    firstname: "",
+    lastname: "",
     image: "",
     password: "",
   });
 
-  const { username, password, email, firstName, lastName, image } = data;
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    alert(`  
-username: ${username}
-email: ${email},
-password: ${password},
-firstName: ${firstName},
-lastName: ${lastName},
-image: ${image},
-
-`);
-
-    setData({
-      username: "",
-      email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      image: "",
-    });
-  };
+ 
+  const [value, setValue] = useState(false);
+  const [mouse, setMouse] = useState();
+  const { username, password, email, firstname, lastname, image } = data;
 
   const handleData = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.id]: e.target.value });
   };
 
-  const handleOut = (e) => {
-    e.target.classList.remove("escape");
-  };
-  const handleShow = (e) => {
-    if (e.target.previousSibling.type === "password") {
-      e.target.previousSibling.type = "text";
-    } else if(e.target.previousSibling.type === "text") {
-      e.target.previousSibling.type = "password";
-    }
+  const hadleSubmit = (e) => {
+    e.preventDefault();
+    if (Object.values(data).every((value) => value.trim() !== "")) {
+    
+    } 
   };
 
-  const handleButton = (e) => {
-    if (!username || !password || (!email || !email.includes("@")) || !firstName || !lastName) {
-      e.target.classList.add("escape");
+  const handleMouse =()=>{
+    if (Object.values(data).every((value) => value.trim() !== "")) {
+      setMouse(false)
     } else {
-      e.target.classList.remove("escape");
+      setMouse(true)
     }
-  };
+   }
 
   return (
     <Container className="mt-4 ">
       <h2 className="text-danger">FORMS</h2>
-      <Form onSubmit={handleFormSubmit} className="w-50">
+      <Form onSubmit={hadleSubmit} className="w-50">
         <Form.Group className="mb-3">
           <Form.Label>Email adress</Form.Label>
           <Form.Control
-            required
-            type="text"
+        
+            type="email"
             placeholder="Enter email"
             onChange={handleData}
-            value={email}
-            name="email"
+            // value={email}
+            id="email"
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Username : {username}</Form.Label>
+          <Form.Label>Username : </Form.Label>
           <Form.Control
-            required
+       
             type="text"
             placeholder="enter your username"
-            value={username}
+            // value={username}
             onChange={handleData}
-            name="username"
+            id="username"
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>First name</Form.Label>
           <Form.Control
-            required
+     
             type="text"
             placeholder="First name"
-            defaultValue="Mark"
-            value={firstName}
+            // value={firstname}
             onChange={handleData}
-            name="firstName"
+            id="firstname"
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Last name: </Form.Label>
           <Form.Control
-            required
+        
             type="text"
             placeholder="Last name"
-            defaultValue="Otto"
+            // value={lastname}
             onChange={handleData}
-            value={lastName}
-            name="lastName"
+            id="lastname"
           />
         </Form.Group>
 
@@ -121,27 +96,29 @@ image: ${image},
 
           <Form.Control
             type="url"
-            placeholder="Username"
-            aria-describedby="inputGroupPrepend"
-            required
+            placeholder="image url"
+          
             onChange={handleData}
-            name="password"
-            value={password}
+            id="image"
+            // value={image}
           />
           <Form.Control.Feedback type="invalid">
             Please choose a username.
           </Form.Control.Feedback>
         </Form.Group>
 
-        <InputGroup>
-          <Form.Control
-            placeholder="Password"
-            type="password"
-            aria-label="Recipient's username with two button addons"
-          />
+        <InputGroup className="group">
+       
+        <Form.Control
+              type={value ? "text" : "password"} 
+              placeholder="Password"
+              onChange={handleData}
+              id="password"
+         
+            />
           <Button
-           type="button"
-            onClick={handleShow}
+            type="button"
+            onClick={() => setValue(!value)}
             variant="outline-secondary"
             className="bg-dark text-white"
           >
@@ -149,18 +126,12 @@ image: ${image},
           </Button>
         </InputGroup>
         <div className="text-center">
-          <Button
-            onMouseOver={handleButton}
-            onMouseOut={handleOut}
-            className="bg-gray border mt-4 border-primary d-inline-block m-auto"
-            type="submit"
-          >
-            Submit
-          </Button>
+        <Button type="submit" onMouseEnter={handleMouse} onMouseLeave ={()=>setMouse(false)} className={mouse ? "submit" : ""}>
+          Submit
+        </Button>
         </div>
       </Form>
     </Container>
   );
 }
-
 export default Forms;

@@ -1,28 +1,27 @@
-.escape{
+@keyframes swap {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150px); /* İstenilen kayma mesafesi */
+  }
+}
 
-    animation: swap .1s infinite alternate;
+body {
+  background-color: rgb(124, 195, 216);
+  font-family: cursive;
+}
+
+button {
+  margin: auto;
+  display: inline-block;
+}
+
+.group {
+  margin-bottom: 3rem;
 }
 
 
-@keyframes swap {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(150px); /* İstenilen kayma mesafesi */
-    }
-  }
-
-  body{
-
-    background-color: rgb(124, 195, 216);
-    font-family: cursive;
-  
-  }
-
-  button{
-
-    margin: auto;
-  }
-  
-  
+.submit {
+  animation: swap 0.1s infinite alternate;
+}
